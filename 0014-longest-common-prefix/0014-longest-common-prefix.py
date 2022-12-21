@@ -1,6 +1,5 @@
 class Solution(object):
     def longestCommonPrefix(self, strs):
-        boo = True
         ind = ""
         j = 0
         length = len(strs[0])
@@ -11,11 +10,9 @@ class Solution(object):
             f = strs[0][i]
             for itr in strs:
                 if f != itr[j]:
-                    boo = False
-                    break
-            if boo == True:
-                ind += f
-                j += 1
+                    return ind
+            ind += f
+            j += 1
         return ind
                 
             
