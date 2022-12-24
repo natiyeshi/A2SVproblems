@@ -1,17 +1,28 @@
 class Solution(object):
     def merge(self, nums1, m, nums2, n):
-        p , i = 0 , 0
-        for i in range(n):
-            nums1.pop()
-        nums1.extend(nums2)
-        nums1.sort()
+        # for i in range(n):
+        #     nums1.pop()
+        # nums1.extend(nums2)
+        # nums1.sort()
+        # [-1,-1,-1,,0,0,0,0,3,0,0,0,0,0,0]
+        # [,,,,1,2]
+        # 
+        i = m - 1      # nums1's index (actual nums)
+        j = n - 1      # nums2's index
+        k = m + n - 1  # nums1's index (next filled position)
+
+        while j >= 0:
+            if i >= 0 and nums1[i] > nums2[j]:
+                nums1[k] = nums1[i]
+                k -= 1
+                i -= 1
+            else:
+                nums1[k] = nums2[j]
+                k -= 1
+                j -= 1
         
-        # while p < n:
-        #     if nums1[i] > nums2[p] or (nums1[i] == 0 and i >= m - n):
-        #         nums1.insert(i,nums2[p])
-        #         nums1.pop()
-        #         p += 1
-        #     i += 1
+                
+        
             
             
         """
