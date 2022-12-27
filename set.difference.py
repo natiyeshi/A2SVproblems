@@ -1,19 +1,12 @@
 # Enter your code here. Read input from STDIN. Print output to STDOUT
 
-def cal(a,la,b,lb):
-    c = 0
-    for i in la:
-        if i not in lb:
-            c += 1
-    print(c)
-    
     
 a = int(input())
 la = input().split(" ")
 b = int(input())
 lb = input().split(" ") 
-map(int,la)
-map(int,lb)
+la = set(map(int,la))
+lb = set(map(int,lb))
 
-
-cal(a,la,b,lb)
+oe = la.difference(lb)
+print(len(oe))
