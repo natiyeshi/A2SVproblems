@@ -5,7 +5,8 @@ class Solution(object):
         nums.sort()
         
         for index,target in enumerate(nums):
-            # print(index)
+            if index != 0 and target == nums[index - 1]:
+                continue
             left = index + 1
             right = len(nums) - 1
             
