@@ -4,6 +4,7 @@ class Solution(object):
         counter = 0
         while(bools == True):
                 bools = False
+                print("hi")
                 for  i in range(len(arr)):
                     if arr[i] == 0:
                         arr.pop(i)
