@@ -1,15 +1,15 @@
 class Solution(object):
     def moveZeroes(self, arr):
-        bools = True
-        counter = 0
-        while(bools == True):
-                bools = False
-                print("hi")
-                for  i in range(len(arr)):
-                    if arr[i] == 0:
-                        arr.pop(i)
-                        counter += 1
-                        bools = True
-                        break
-        [arr.append(0) for i in range(counter)]
+        
+        curr = 0
+        zero = 0
+        
+        
+        for i in range(len(arr)):
+            if arr[zero] == 0:
+                zero += 1
+            else:
+                arr[zero], arr[curr] = arr[curr],arr[zero]
+                zero += 1
+                curr += 1
         return arr
