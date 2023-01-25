@@ -1,15 +1,23 @@
 class Solution(object):
     def removeDuplicates(self, nums):
-        ar = []
-        ma = nums[-1] + 1
-        for i in range(1,len(nums)):
-            if nums[i] == nums[i - 1]:
-                ar.append(i)
-        for i in ar:
-            nums[i] = ma
-        nums.sort()
-        
-        return  len(nums) - len(ar)
+        pl = 0
+        sec = 0
+        c = 0
+        # if len(nums) == 1:
+        #     return 1
+        # if len(nums) == 2:
+        #     if nums[0] == nums[1]:
+        #         return 1
+        #     return 2
+        while sec < len(nums):
+            
+            if sec == 0 or nums[sec - 1] != nums[sec]:
+                nums[pl] = nums[sec]
+                pl += 1
+                c += 1
+            sec += 1    
+            
+        return  pl
             
         
         """
