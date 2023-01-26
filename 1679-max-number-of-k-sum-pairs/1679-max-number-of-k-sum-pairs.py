@@ -3,14 +3,10 @@ class Solution(object):
         arr.sort()
         sm = 0
         lar = len(arr) - 1
-        c = set()
-        print(arr)
-        while sm != lar and sm < len(arr) and lar >= 0 :
+        c = 0
+        while sm < lar :
             if arr[sm] + arr[lar] == k :
-                if (lar,sm) not in c:
-                    c.add((sm,lar))
-                else:
-                    break
+                c += 1
                 sm += 1 
                 lar -= 1
                 
@@ -18,7 +14,7 @@ class Solution(object):
                 sm += 1
             else:
                 lar -= 1
-        return len(c) 
+        return c
         
         """
         :type nums: List[int]
