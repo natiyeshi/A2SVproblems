@@ -5,22 +5,25 @@
 #         self.next = next
 class Solution(object):
     def deleteDuplicates(self, head):
+        
         if not head or not head.next:
             return head
+    
+        fast = head.next
+        slow = head
         
-        h = ListNode(0)
-        temp = ListNode(head.val)
-        h.next = temp
-      
-        while head:
-            if head.val != temp.val:
-                t = ListNode(head.val)
-                temp.next = t
-                temp = t
-     
-            head = head.next
+        dummy = ListNode(0)
+        dummy.next = slow
+        
+        while fast:
+            if fast.val != slow.val:
+                slow.next = fast
+                slow = slow.next
+            fast = fast.next
             
-        return h.next
+        slow.next = None
+        
+        return dummy.next
         
         """
         :type head: ListNode
