@@ -8,22 +8,26 @@ class Solution(object):
         temp = head
         if temp.next == None or left == right:
             return head
-        count = 1
-        while count != left:
-            temp = temp.next
-            count += 1
-        arr = []
-        start = temp
-        while count != right:
-            arr.append(temp.val)
-            temp = temp.next
-            count += 1
-        arr.append(temp.val)
+        dummy = ListNode(0)
+        dummy.next = head
+        prev = dummy
         
-        for i in range(len(arr)-1,-1,-1):
-            start.val = arr[i]
-            start = start.next
-        return head
+        for i in range(left - 1):
+            prev = prev.next
+        
+        curr = prev.next
+        rev = None
+        
+        for i in range(right - left + 1):
+            nexts = curr.next
+            curr.next = rev
+            rev = curr
+            curr = nexts
+        
+        prev.next.next = curr
+        prev.next = rev      
+        
+        return dummy.next
         
         """
         :type head: ListNode
