@@ -5,7 +5,6 @@
 #         self.next = next
 class Solution(object):
     def oddEvenList(self, head):
-        
         dummy = ListNode()
         temp = dummy
         
@@ -28,11 +27,4 @@ class Solution(object):
         temp.next = dummy2.next
         
         return dummy.next
-        
-        
-        
-        """
-        :type head: ListNode
-        :rtype: ListNode
-        """
         
