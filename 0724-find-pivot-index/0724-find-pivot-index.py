@@ -1,8 +1,6 @@
 class Solution(object):
     def pivotIndex(self, nums):
         
-        leftPre = [0]
-        rightPre = [0]
         _sum = sum(nums)
         t = 0
         for i,val in enumerate(nums):
