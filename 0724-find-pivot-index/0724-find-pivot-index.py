@@ -3,35 +3,14 @@ class Solution(object):
         
         leftPre = [0]
         rightPre = [0]
-        for i in nums:
-            leftPre.append(leftPre[-1] + i)
+        _sum = sum(nums)
+        t = 0
+        for i,val in enumerate(nums):
+            if t * 2 == _sum - val:
+                return i
+            t += val
         
-        for i,val in enumerate(leftPre):
-            if i == 0: continue
-            if leftPre[i - 1] == leftPre[-1] - val:
-                return i - 1
-            
         return -1    
-        
-        
-        
-        
-        
-        # left = 0
-        # right = len(nums)
-        # leftArr = nums[0]
-        # rightArr = nums[-1]
-        # while left + 1 != right:
-        #     if leftArr > rightArr:
-        #         right -= 1
-        #         rightArr += nums[right]
-        #     else:
-        #         left += 1
-        #         leftArr += nums[left]
-        # if rightArr != leftArr and left != 0:
-        #     return -1
-        # return left
-            
         
         
         """
