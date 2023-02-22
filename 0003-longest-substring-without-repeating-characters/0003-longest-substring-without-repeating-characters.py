@@ -7,12 +7,12 @@ class Solution(object):
         for i in range(len(s)):
             if s[i] not in temp:
                 temp.add(s[i])
-                max_ = max(max_, i - left + 1)
             else:
                 while s[i] in temp:
                     temp.remove(s[left])
                     left += 1
                 temp.add(s[i])
+            max_ = max(max_, i - left + 1)
 
         return max_
         
