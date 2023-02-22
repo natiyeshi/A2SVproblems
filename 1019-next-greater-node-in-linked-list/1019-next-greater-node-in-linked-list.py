@@ -5,16 +5,20 @@
 #         self.next = next
 class Solution(object):
     def nextLargerNodes(self, head):
+        temp = head
+        arr = []
+        c = 0
+        while temp:
+            arr.append(temp.val)
+            temp = temp.next
+        ans = [0 for i in range(len(arr))]
+        stack = []
+        for i,val in enumerate(arr):
+            while stack and arr[stack[-1]] < val:
+                ans[stack.pop()] = val
+            stack.append(i)
         
-        res, stack = [], []
-        while head:
-            while stack and stack[-1][1] < head.val:
-                res[stack.pop()[0]] = head.val
-            stack.append([len(res), head.val])
-            res.append(0)
-            head = head.next
-        return res
-                
+        return ans
             
         
         """
