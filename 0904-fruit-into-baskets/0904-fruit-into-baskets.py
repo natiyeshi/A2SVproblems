@@ -1,24 +1,19 @@
 class Solution(object):
     def totalFruit(self, fruits):
-                start = 0
-                max_len = float('-inf')
-                adict = {}
-
-                for end in range(len(fruits)):
-                    if fruits[end] not in adict:
-                        adict[fruits[end]] = 1
-                    else:
-                        adict[fruits[end]] += 1
-
-                    while len(adict) > 2:
-                        adict[fruits[start]] -= 1
-                        if adict[fruits[start]] == 0:
-                            del adict[fruits[start]]
-                        start = start + 1
-
-                    max_len = max(max_len, end - start + 1)
-
-                if max_len == float('-inf'):
-                    return 0
-                else:
-                    return max_len
+        dic = defaultdict(int)
+        left = 0
+        result = 0
+        for i in range(len(fruits)):
+            dic[fruits[i]] += 1
+            while len(dic) > 2:
+                dic[fruits[left]] -= 1
+                if dic[fruits[left]] == 0:
+                    del dic[fruits[left]]
+                left += 1
+            result = max(result,i - left + 1)
+        return result
+        """
+        :type fruits: List[int]
+        :rtype: int
+        """
+        
