@@ -1,25 +1,13 @@
-class Solution(object):
-    def subarraySum(self, nums, k):
-        pre = [0]
-        sums = defaultdict(int)
-        counter = 0
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        dic = defaultdict(int)
+        preSum = [0]
         for i in nums:
-            pre.append(pre[-1] + i)
-        for ele in pre:
-            if ele - k in sums:
-                counter += sums[ele - k]
-            sums[ele] += 1 
-            
+            preSum.append(preSum[-1] + i)
+        counter = 0
+        for i, val in enumerate(preSum):
+            if val - k in dic:
+                counter += dic[val - k] 
+            dic[val] += 1
         return counter
-        
-                                                                                                                
-        
-         
-        
-        
-        """
-        :type nums: List[int]
-        :type k: int
-        :rtype: int
-        """
         
