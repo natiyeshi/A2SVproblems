@@ -1,9 +1,15 @@
 class Solution:
     def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
-        dic = defaultdict(int)
-        
+        line = []
         for itr in trips:
-            for i in range(itr[1],itr[2]):
-                dic[i] += itr[0]
-            
+            line.append((itr[1],itr[0]))
+            line.append((itr[2],-itr[0]))
+        line.sort()
+        
+        for itr in line:
+            capacity -= itr[1]
+            if capacity < 0:
+                return False
+        return True
+        
         return max(dic.values()) <= capacity
