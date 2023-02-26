@@ -1,10 +1,15 @@
 class Solution:
     def timeRequiredToBuy(self, tickets: List[int], k: int) -> int:
-        result = 0
-        while tickets[k] != 0:
-            for j in range(len(tickets)):
-                if tickets[j] != 0:
-                    tickets[j] -= 1
-                    result += 1
-                if tickets[k] == 0: return result
-        return result
+        result = tickets[k] * len(tickets) - (len(tickets) - (k + 1))
+        value = tickets[k]
+        for i in range(len(tickets)):
+            if i <= k:
+                tickets[i] -= value
+            else:
+                tickets[i] -= value - 1
+        
+        sum_ = 0
+        for i in tickets:
+            if i < 0: sum_ += abs(i)
+                
+        return result - sum_
