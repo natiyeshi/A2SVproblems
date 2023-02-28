@@ -18,17 +18,12 @@ class Solution:
             arr.next = temp
             arr = arr.next
             return self.mergeTwoLists(list1.next,list2,arr,dummy)
-        else:
-            while list1:
-                temp = ListNode(list1.val)
-                arr.next = temp
-                arr = arr.next
-                list1 = list1.next
-            while list2:
-                temp = ListNode(list2.val)
-                arr.next = temp
-                arr = arr.next
-                list2 = list2.next
-            return dummy.next
         
+        if list1:
+            arr.next = list1
+        else:    
+            arr.next = list2
+        
+        return dummy.next
+
         
