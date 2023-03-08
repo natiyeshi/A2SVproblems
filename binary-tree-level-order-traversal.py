@@ -8,12 +8,18 @@ class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         if not root:
             return []
-        temp = defaultdict(list)
-        def traverse(root,key = 1):
-            if root:
-                traverse(root.left , key + 1)
-                traverse(root.right, key + 1)
-                temp[key].append(root.val)
-        traverse(root)
-        temp=dict(sorted(temp.items(), key=lambda item: item[0]))
-        return temp.values()
+        que = deque()
+        que.append(root)
+        result = []
+        while que:
+            child = []
+            l = len(que)
+            for i in range(l):
+                temp = que.popleft()
+                if temp.left:
+                    que.append(temp.left)
+                if temp.right:
+                    que.append(temp.right)
+                child.append(temp.val)
+            result.append(child)
+        return result
