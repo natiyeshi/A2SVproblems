@@ -19,7 +19,6 @@ class Solution:
             if temp[1] > 0:
                 result = temp[0] // temp[1]
                 if result == root.val:
-                    print(temp)
                     max_ += 1
             return temp
         traverse(root)
