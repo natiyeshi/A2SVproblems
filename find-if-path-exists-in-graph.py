@@ -5,7 +5,8 @@ class Solution:
         
         def find(ind):
             if dic[ind] != ind:
-                return find(dic[ind])
+                dic[ind] = find(dic[ind])
+                return dic[ind]
             return ind
         
         def union(x,y):
