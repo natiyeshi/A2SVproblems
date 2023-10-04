@@ -1,25 +1,15 @@
 class Solution:
-    def checkIfPrerequisite(self, numCourses: int, prerequisites: List[List[int]], queries: List[List[int]]) -> List[bool]:
+    def checkIfPrerequisite(self, n: int, prerequisites: List[List[int]], queries: List[List[int]]) -> List[bool]:
+        
+        dist = [[False] * n for _ in range(n)]
 
-        graph = defaultdict(list)
+        for i, j in prerequisites:
+            dist[i][j] = True
 
-        for f,t in prerequisites:
-            graph[t].append(f)
-        visited = set()
-        def dfs(node,find):
-            visited.add(node)
-            for i in graph[node]:
-                if i in visited:
-                    continue
-                if i == find:
-                    return True
-                if dfs(i,find):
-                    return True
-            return False
-        result = []
-
-        for i,j in queries:
-            result.append(dfs(j,i))
-            visited = set()
-
-        return result
+        for i in range(n):
+            dist[i][i] = True
+        for k in range(n):
+            for i in range(n):
+                for j in range(n):
+                    dist[i][j] = dist[i][j] or dist[i][k] and dist[k][j]
+        return [dist[u][v] for u,v in queries]
