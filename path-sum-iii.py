@@ -7,21 +7,26 @@
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
         
-        dic = defaultdict(int)
-        dic[0] = 1 
         result = 0
-        def traverse(root,sum_):
+
+        def dfs(node):
             nonlocal result
-            if root:
-                sum_ += root.val
-                if sum_ - targetSum in dic:
-                    result += dic[sum_ - targetSum]
-                if sum_ in dic:
-                    dic[sum_] += 1
-                else:
-                    dic[sum_] += 1
-                traverse(root.left,sum_)
-                traverse(root.right,sum_)
-                dic[sum_] -= 1
-        traverse(root,0)
+            if not node:
+                return []
+            l = dfs(node.left)
+            r = dfs(node.right)
+            res = [node.val]
+            if node.val == targetSum:
+                result += 1
+            for i in l:
+                if i + node.val == targetSum:
+                    result += 1
+                res.append(i + node.val)
+            for i in r:
+                if i + node.val == targetSum:
+                    result += 1
+                res.append(i + node.val)
+            return res
+
+        dfs(root)
         return result
